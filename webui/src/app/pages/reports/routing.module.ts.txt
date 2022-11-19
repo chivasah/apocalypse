@@ -1,0 +1,19 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import {AuthGuard} from '../../services/auth_guard.service';
+import {ListOfInfectedSurvivorsComponent} from './list-of-infected-survivors/list-of-infected-survivors.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: 'list-of-infected-survivors', pathMatch: 'full' },
+    {path: 'list-of-infected-survivors', component: ListOfInfectedSurvivorsComponent, data: [{selectedHeaderItemIndex: 4, selectedSubNavItemIndex: 2}] }
+  // {
+  //   path: 'history',
+  //   loadChildren: './history/index#HistoryModule',
+  //   canActivate: [AuthGuard]
+  // }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)]
+})
+export class RoutingModule {}

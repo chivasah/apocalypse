@@ -1,0 +1,16 @@
+<div class="s-login-pg">
+    <div class="s-login-pg-headd">
+        <div style="width:100px;"> </div>
+        <p style="text-align: center"> ROBOT APOCALYPSE
+        </p>
+    </div>
+    <form class="s-login-pg-form" name="form" (ngSubmit)="login()" #f="ngForm" novalidate>
+        <input type="text"     placeholder="Username|demo" name="username" [(ngModel)]="model.username" #username="ngModel" required/>
+        <input type="password" placeholder="Password|demo" name="password" [(ngModel)]="model.password" #password="ngModel" required/>
+        <button type="submit" class="btn btn-primary">LOGIN</button>
+    </form>
+    <div class="s-login-pg-foot">
+        <div *ngIf="errMsg" style="color:indianred; font-weight: bold">{{errMsg}}</div>
+    </div>
+
+</div>

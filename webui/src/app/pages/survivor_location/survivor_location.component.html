@@ -1,0 +1,47 @@
+<div class="survivor-detail-pg pad-16">
+
+    <form clrForm [formGroup]="fg"  id="fg" novalidate (ngSubmit)="onNgSubmit()">
+        <clr-tabs>
+            <clr-tab>
+                <button clrTabLink>Survivor Location</button>
+                <clr-tab-content>
+                    <section class="form-block" style="margin-top:32px">
+                        <table>
+                            <tr>
+                                <td style="width:125px;">Name </td>
+                                <td><input colspan="2" type="text" formControlName="name" style="width:120px" [readonly]="true"></td>
+                            </tr>
+                            <tr>
+                                <td style="width:125px;">Age </td>
+                                <td>
+                                    <input colspan="2" type="number" formControlName="age" style="width:120px" [readonly]="true">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:125px;">Gender </td>
+                                <td><input colspan="2" type="text" formControlName="gender" style="width:120px" [readOnly]="true"></td>
+                            </tr>
+                            <tr>
+                                <td style="width:125px;">Infected </td>
+                                <td><input colspan="2" type="text" formControlName="infected" style="width:120px" [readOnly]="true"></td>
+                            </tr>
+                            <tr>
+                                <td style="width:125px;">Last Location (latitude, longitude)</td>
+                                <td><input colspan="2" type="text" formControlName="lastLocation" style="width:120px" [readOnly]="false"></td>
+                            </tr>
+                        </table>
+                    </section>
+                </clr-tab-content>
+            </clr-tab>
+        </clr-tabs>
+
+        <button
+            class="btn btn-primary btn-icon"
+            type="submit"
+            [disabled]="fg.pristine || !fg.valid"
+        >
+            <i class="plus circle icon"></i>
+            UPDATE SURVIVOR LOCATION
+        </button>
+    </form>
+</div>

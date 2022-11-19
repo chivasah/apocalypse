@@ -1,0 +1,49 @@
+<div class="survivor-detail-pg pad-16">
+
+    <form clrForm [formGroup]="fg"  id="fg" novalidate (ngSubmit)="onNgSubmit()">
+        <clr-tabs>
+            <clr-tab>
+                <button clrTabLink>Survivor Registration</button>
+                <clr-tab-content>
+                    <section class="form-block" style="margin-top:32px">
+                        <table>
+                            <tr>
+                                <td style="width:125px;">Name </td>
+                                <td><input colspan="2" type="text" formControlName="name" style="width:120px" size="100"></td>
+                            </tr>
+                            <tr>
+                                <td style="width:125px;">Age </td>
+                                <td>
+
+                                    <input colspan="2" type="number" formControlName="age" style="width:120px">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:125px;">Gender </td>
+                                <td>
+                                    <div class="clr-row-4">
+                                        <clr-radio-container>
+                                            <span *ngFor="let col of genders">
+                                                <input type="radio" clrRadio  formControlName="gender" [id]="col" value="{{col}}" />
+                                                <label class="display-label" [for]="col"> {{col}} </label> &nbsp;
+                                            </span>
+                                        </clr-radio-container>
+                                    </div>
+<!--                                    <input colspan="2" type="text" style="width:120px"></td>-->
+                            </tr>
+                        </table>
+                    </section>
+                </clr-tab-content>
+            </clr-tab>
+        </clr-tabs>
+
+        <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="fg.pristine || !fg.valid || isLoading"
+        >
+            <i class="plus circle icon"></i>
+            REGISTER SURVIVOR
+        </button>
+    </form>
+</div>

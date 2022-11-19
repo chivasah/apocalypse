@@ -1,0 +1,30 @@
+<div class="s-inventory-dash-pg">
+    <div class="chart-box">
+        <h4> Inventory by Category </h4>
+        <ngx-charts-advanced-pie-chart
+            style="position:relative"
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="robotsByCategoryData"
+        >
+        </ngx-charts-advanced-pie-chart>
+    </div>
+
+    <div class="chart-box">
+        <h4> Inventory Qty By Category </h4>
+        <ngx-charts-bar-vertical
+            [view]="[990, 270]"
+            [barPadding]="1"
+            [scheme]="barColorScheme"
+            [results]="robotsByCountryData"
+            [roundDomains]="true"
+            [showGridLines]="true"
+            [xAxis]="true"
+            [yAxis]="true"
+            [legend]="false"
+            [roundEdges]="false"
+        >
+        </ngx-charts-bar-vertical>
+    </div>
+
+</div>

@@ -1,0 +1,28 @@
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RoutingModule} from './routing.module';
+import {ListOfInfectedSurvivorsComponent} from './list-of-infected-survivors/list-of-infected-survivors.component';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import {ReportsService} from '../../services/api/reports.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
+
+@NgModule({
+    imports: [
+        RoutingModule,
+        CommonModule,
+        NgxDatatableModule,
+        RoutingModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+    ],
+    declarations: [ListOfInfectedSurvivorsComponent],
+    providers: [
+        ListOfInfectedSurvivorsComponent,
+        ReportsService
+    ]
+})
+export class ReportsModule {
+}

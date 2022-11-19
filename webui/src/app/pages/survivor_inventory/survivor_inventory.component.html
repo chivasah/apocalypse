@@ -1,0 +1,65 @@
+<div class="survivor-detail-pg pad-16">
+    <div class="s-info-bar">
+        <!-- clr-dropdown [clrMenuPosition]="'right-bottom'">
+            <button class="btn btn-sm btn-primary"clrDropdownToggle>
+                Filter <clr-icon shape="caret right"></clr-icon>
+            </button>
+            <div class="dropdown-menu">
+                <label class="dropdown-header">By status</label>
+                <button clrDropdownItem > On Hold  </button>
+                <button clrDropdownItem > Shipped  </button>
+                <button clrDropdownItem > Complete </button>
+                <button clrDropdownItem > New      </button>
+                <label class="dropdown-header">By Payment Type</label>
+                <button clrDropdownItem > Cash  </button>
+                <button clrDropdownItem > Check </button>
+                <button clrDropdownItem > Card  </button>
+            </div>
+        </clr-dropdown -->
+        <div style="flex:1"></div>
+        <div *ngIf="isLoading" class="spinner spinner-md" style="margin:0 10px;">Loading...</div>
+    </div>
+    <form [formGroup]="frmSurvivorDetail" novalidate>
+        <h3> Survivor:{{survivorId}} </h3>
+        <br/>
+        <clr-tabs>
+            <clr-tab>
+                <button clrTabLink>Survivor Details</button>
+                <clr-tab-content>
+                    <br/>
+                    <table class="s-survivor-header">
+                        <tr><td style="width:125px">Name     </td> <td> {{survivorDetailsRec.name}}</td></tr>
+                        <tr><td style="width:125px">Age     </td> <td> {{survivorDetailsRec.age}}</td></tr>
+                        <tr><td style="width:125px">Gender     </td> <td> {{survivorDetailsRec.gender}}</td></tr>
+                        <tr><td style="width:125px">Infected     </td> <td> {{survivorDetailsRec.infected}}</td></tr>
+                        <tr><td style="width:125px">Last location     </td> <td> {{survivorDetailsRec.lastLocation || "unknown" }} &nbsp; <button class="btn btn-primary btn-sm" routerLink="/home/survivors/location-update/{{survivorId}}" attr.data-itemid="{{survivorId}}">Update Survivor Location</button></td></tr>
+                    </table>
+                    <table class="s-survivor-line table" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th class="left" style="width:60px;">Date</th>
+                                <th class="left" style="width:110px;">User</th>
+                                <th class="left" style="width:200px;">Infected</th>
+                                <th style="width:50px;" colspan="2">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let o of survivorDetailsRec.survivorDetails">
+                                <td class="left">{{o.id}}</td>
+                                <td class="left">{{o.id}}</td>
+                                <td class="right">{{o.infected ? "infected" : " - "}}</td>
+                                <td style="width:40px;"><clr-icon shape="trash" class="is-error"></clr-icon></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </clr-tab-content>
+            </clr-tab>
+        </clr-tabs>
+    </form>
+</div>
+<ng-template #productDiscontinuedTpl let-row="row" let-value="value">
+    <div class="toggle-switch">
+        <input type="checkbox" [attr.checked]="value==1?true:null" checked [id]="row.id"/>
+        <label [for]="row.id"></label>
+    </div>
+</ng-template>
