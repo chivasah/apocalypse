@@ -6,7 +6,7 @@
 
 package zw.co.henry.indomidas.apocalypse.model.response;
 
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 public class OperationResponse
 {
-      @ApiModelProperty(required = true)
+//      @ApiModelProperty(required = true)
    private ResponseStatusEnum operationStatus;
     private String operationMessage;
 public enum ResponseStatusEnum {

@@ -29,14 +29,14 @@ import zw.co.henry.indomidas.apocalypse.model.survivor.SurvivorDetailResponse;
 import zw.co.henry.indomidas.apocalypse.model.survivor.SurvivorResponse;
 import zw.co.henry.indomidas.apocalypse.repo.SurvivorRepo;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(tags = { "Survivors" })
+//@Api(tags = { "Survivors" })
 @Slf4j
 public class SurvivorController
 {
@@ -50,10 +50,14 @@ public class SurvivorController
    @Autowired
    private SurvivorRepo survivorRepo;
 
-   @ApiOperation(value = "List of survivors", response = SurvivorResponse.class)
+//   @ApiOperation(value = "List of survivors", response = SurvivorResponse.class)
    @RequestMapping(value = "/survivors", method = RequestMethod.GET)
-   public SurvivorResponse getSurvivorsByPage(@ApiParam(value = "") @RequestParam(value = "page", defaultValue = "0", required = false)
-   Integer page, @ApiParam(value = "between 1 to 1000") @RequestParam(value = "size", defaultValue = "20", required = false)
+   public SurvivorResponse getSurvivorsByPage(
+//           @ApiParam(value = "")
+           @RequestParam(value = "page", defaultValue = "0", required = false)
+   Integer page,
+//           @ApiParam(value = "between 1 to 1000")
+           @RequestParam(value = "size", defaultValue = "20", required = false)
    Integer size, @RequestParam(value = "survivorId", required = false)
    Integer survivorId, @RequestParam(value = "category", required = false)
    String category, Pageable pageable)
@@ -71,15 +75,17 @@ public class SurvivorController
       return resp;
    }
 
-   @ApiOperation(value = "Add new survivor", response = OperationResponse.class)
+//   @ApiOperation(value = "Add new survivor", response = OperationResponse.class)
    @RequestMapping(value = "/survivors", method = RequestMethod.POST, produces = { "application/json" })
    public OperationResponse addNewSurvivor(@RequestBody
    SurvivorDTO survivorDTO, HttpServletRequest req)
    {
 
       OperationResponse resp = new OperationResponse();
+      Survivor qry = new Survivor();
+      qry.setId(survivorDTO.getId());
 
-      if (this.survivorRepo.exists(survivorDTO.getId())) {
+      if (this.survivorRepo.exists( org.springframework.data.domain.Example.of(qry))) {
          resp.setOperationStatus(ResponseStatusEnum.ERROR);
          resp.setOperationMessage("Unable to add Survivor - Survivor already exist ");
       }
@@ -99,14 +105,17 @@ public class SurvivorController
       return resp;
    }
 
-   @ApiOperation(value = "Flag survivor as infected", response = OperationResponse.class)
+//   @ApiOperation(value = "Flag survivor as infected", response = OperationResponse.class)
    @RequestMapping(value = "/survivors/{survivorId}", method = RequestMethod.DELETE, produces = { "application/json" })
    public OperationResponse flagSurvivorAsInfected(@PathVariable("survivorId")
    Integer survivorId, HttpServletRequest req)
    {
       OperationResponse resp = new OperationResponse();
-      if (this.survivorRepo.exists(survivorId)) {
-         Survivor survivor = this.survivorRepo.findOne(survivorId);
+       Survivor qry = new Survivor();
+       qry.setId(survivorId);
+
+       if (this.survivorRepo.exists( org.springframework.data.domain.Example.of(qry))) {
+         Survivor survivor = this.survivorRepo.findOneById(survivorId).get();
          SurvivorDetail detail = new SurvivorDetail();
          detail.setSurvivor(survivor);
          detail.setInfected(true);
@@ -122,14 +131,17 @@ public class SurvivorController
       return resp;
    }
 
-    @ApiOperation(value = "Update survivor location", response = OperationResponse.class)
+//    @ApiOperation(value = "Update survivor location", response = OperationResponse.class)
     @RequestMapping(value = "/survivors/{survivorId}/location", method = RequestMethod.PUT, produces = { "application/json" })
     public OperationResponse updateSurvivorLocation(@PathVariable("survivorId")
                                                 Integer survivorId, @RequestBody String location, HttpServletRequest req)
     {
         OperationResponse resp = new OperationResponse();
-        if (this.survivorRepo.exists(survivorId)) {
-            Survivor survivor = this.survivorRepo.findOne(survivorId);
+        Survivor qry = new Survivor();
+        qry.setId(survivorId);
+
+        if (this.survivorRepo.exists( org.springframework.data.domain.Example.of(qry))) {
+            Survivor survivor = this.survivorRepo.findOneById(survivorId).get();
             survivor.setLastLocation(location);
             this.survivorRepo.saveAndFlush(survivor);
             resp.setOperationStatus(ResponseStatusEnum.SUCCESS);
@@ -142,7 +154,7 @@ public class SurvivorController
         return resp;
     }
 
-    @ApiOperation(value = "Survivor Details", response = SurvivorDetailResponse.class)
+//    @ApiOperation(value = "Survivor Details", response = SurvivorDetailResponse.class)
    @RequestMapping(value = "/survivor-details", method = RequestMethod.GET)
    public SurvivorDetailResponse getSurvivorDetail(@RequestParam(value = "survivorid", required = false)
    Integer survivorId)

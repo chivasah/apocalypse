@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.RestController;
 import zw.co.henry.indomidas.apocalypse.model.data.SingleSeries;
 import zw.co.henry.indomidas.apocalypse.model.response.SingleDataSeriesResponse;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import zw.co.henry.indomidas.apocalypse.model.robot.Robot;
 import zw.co.henry.indomidas.apocalypse.model.robot.QRobot;
@@ -44,7 +44,7 @@ import javax.persistence.PersistenceContext;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(tags = { "Survivor" })
+//@Api(tags = { "Survivor" })
 @Slf4j
 public class SurvivourStatsController
 {
@@ -59,7 +59,7 @@ public class SurvivourStatsController
 
 
 
-   @ApiOperation(value = "Survivor Stats", response = SingleDataSeriesResponse.class)
+//   @ApiOperation(value = "Survivor Stats", response = SingleDataSeriesResponse.class)
    @RequestMapping(value = "/survivor-stats/{type}", method = RequestMethod.GET)
    public SingleDataSeriesResponse getSurvivorStats(@PathVariable("type")
    String type)

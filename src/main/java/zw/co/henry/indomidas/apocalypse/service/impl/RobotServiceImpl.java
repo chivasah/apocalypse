@@ -102,9 +102,9 @@ public class RobotServiceImpl implements ApplicationListener<ContextRefreshedEve
       try {
          final RobotFromRobotDTOConverter robotDTOConverter = new RobotFromRobotDTOConverter();
          final List<RobotDTO> robotList = connectToRobotCPUSystem();
-         LOGGER.trace("{}", robotList);
+         LOGGER.info("{}", robotList);
          robotRepo.deleteAllInBatch();
-         robotRepo.save(robotList.stream().map(robotDTOConverter::convert).filter(Objects::nonNull).collect(Collectors.toList()));
+         robotRepo.saveAll(robotList.stream().map(robotDTOConverter::convert).filter(Objects::nonNull).collect(Collectors.toList()));
       }
       catch (final Exception exception$) {
          LOGGER.error("{}", exception$.getLocalizedMessage());

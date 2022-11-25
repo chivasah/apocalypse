@@ -19,7 +19,7 @@ public class SurvivorDTO implements Serializable
 {
    private static final long serialVersionUID = 1L;
 
-   @javax.annotation.Nullable
+//   @javax.annotation.Nullable
    private Integer id;
 
    @NotNull
@@ -31,13 +31,13 @@ public class SurvivorDTO implements Serializable
    @NotNull
    private String gender;
 
-   @javax.annotation.Nullable
+//   @javax.annotation.Nullable
    private String lastLocation;
 
-   @javax.annotation.Nullable
+//   @javax.annotation.Nullable
    private List<SurvivorDetailDTO> survivorDetails;
 
-   @javax.annotation.Nullable
+//   @javax.annotation.Nullable
    private List<SurvivorInventoryDTO> inventory;
 
    private Boolean infected;

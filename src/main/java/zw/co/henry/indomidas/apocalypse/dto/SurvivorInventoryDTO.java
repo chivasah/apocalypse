@@ -16,7 +16,7 @@ public class SurvivorInventoryDTO implements Serializable
 {
    private static final long serialVersionUID = 1L;
 
-   @javax.annotation.Nullable
+//   @javax.annotation.Nullable
    private Integer id;
 
    private SurvivorDTO survivor;

@@ -17,13 +17,13 @@ import zw.co.henry.indomidas.apocalypse.model.robot.Robot;
 import zw.co.henry.indomidas.apocalypse.model.robot.RobotResponse;
 import zw.co.henry.indomidas.apocalypse.repo.RobotRepo;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(tags = { "Robot" })
+//@Api(tags = { "Robot" })
 public class RobotController
 {
 
@@ -31,10 +31,14 @@ public class RobotController
    @Autowired
    private RobotRepo robotRepo;
 
-   @ApiOperation(value = "List of robots", response = RobotResponse.class)
+//   @ApiOperation(value = "List of robots", response = RobotResponse.class)
    @RequestMapping(value = "/robots", method = RequestMethod.GET)
-   public RobotResponse getRobotsByPage(@ApiParam(value = "") @RequestParam(value = "page", defaultValue = "0", required = false)
-   Integer page, @ApiParam(value = "between 1 to 1000") @RequestParam(value = "size", defaultValue = "20", required = false)
+   public RobotResponse getRobotsByPage(
+//           @ApiParam(value = "")
+           @RequestParam(value = "page", defaultValue = "0", required = false)
+   Integer page,
+//           @ApiParam(value = "between 1 to 1000")
+           @RequestParam(value = "size", defaultValue = "20", required = false)
    Integer size, @RequestParam(value = "category", required = false)
    String robotCategory, Pageable pageable)
    {

@@ -18,19 +18,19 @@ import org.springframework.web.bind.annotation.RestController;
 import zw.co.henry.indomidas.apocalypse.model.data.SingleSeries;
 import zw.co.henry.indomidas.apocalypse.model.response.SingleDataSeriesResponse;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(tags = { "Robot" })
+//@Api(tags = { "Robot" })
 public class RobotStatsController
 {
 
    @Autowired
    private JdbcTemplate jdbcTemplate;
 
-   @ApiOperation(value = "Robot Stats", response = SingleDataSeriesResponse.class)
+//   @ApiOperation(value = "Robot Stats", response = SingleDataSeriesResponse.class)
    @RequestMapping(value = "/robot-stats/{type}", method = RequestMethod.GET)
    public SingleDataSeriesResponse getRobotStats(@PathVariable("type")
    String type)

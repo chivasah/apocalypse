@@ -3,7 +3,7 @@ package zw.co.henry.indomidas.apocalypse.model.user;
 import javax.persistence.*;
 
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import zw.co.henry.indomidas.apocalypse.dto.converters.persistence.RoleConverter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -130,7 +130,7 @@ public class User
          String address2, String country, String postal, String secretQuestion, String secretAnswer, boolean enableRenewal, boolean enableBetaTesting) {
       this.setUserId(userId);
       this.setEmail(userId);
-      this.setPassword(new BCryptPasswordEncoder().encode(password));
+//      this.setPassword(new BCryptPasswordEncoder().encode(password));
       this.setRole(role);
       this.setFirstName(firstName);
       this.setLastName(lastName);

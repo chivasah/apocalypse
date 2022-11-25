@@ -23,9 +23,9 @@ import com.querydsl.jpa.JPQLTemplates;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import zw.co.henry.indomidas.apocalypse.dto.converters.SurvivorDTOFromSurvivorConverter;
 import zw.co.henry.indomidas.apocalypse.dto.converters.SurvivorDetailDTOFromSurvivorDetailConverter;
@@ -43,7 +43,7 @@ import zw.co.henry.indomidas.apocalypse.repo.SurvivorRepo;
  */
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(tags = { "Reports" })
+//@Api(tags = { "Reports" })
 @Slf4j
 public class ReportsController
 {
@@ -61,7 +61,7 @@ public class ReportsController
    @Autowired
    private SurvivorRepo survivorRepo;
 
-   @ApiOperation(value = "Percentage of infected survivors.", response = NumericResponse.class)
+//   @ApiOperation(value = "Percentage of infected survivors.", response = NumericResponse.class)
    @RequestMapping(value = "/percentage-of-infected-survivors", method = RequestMethod.GET)
    public NumericResponse getPercentageOfInfectedSurvivors(@RequestParam(value = "category", required = false)
    String category, Pageable pageable)
@@ -92,7 +92,7 @@ public class ReportsController
       return resp;
    }
 
-   @ApiOperation(value = "Percentage of non-infected survivors.", response = NumericResponse.class)
+//   @ApiOperation(value = "Percentage of non-infected survivors.", response = NumericResponse.class)
    @RequestMapping(value = "/percentage-of-non-infected-survivors", method = RequestMethod.GET)
    public NumericResponse getPercentageOfNonInfectedSurvivors(@RequestParam(value = "category", required = false)
    String category, Pageable pageable)
@@ -123,10 +123,14 @@ public class ReportsController
        return resp;
    }
 
-   @ApiOperation(value = "List of infected survivors", response = SurvivorResponse.class)
+//   @ApiOperation(value = "List of infected survivors", response = SurvivorResponse.class)
    @RequestMapping(value = "/list-of-infected-survivors", method = RequestMethod.GET)
-   public SurvivorResponse getListOfInfectedSurvivorsByPage(@ApiParam(value = "") @RequestParam(value = "page", defaultValue = "0", required = false)
-   Integer page, @ApiParam(value = "between 1 to 1000") @RequestParam(value = "size", defaultValue = "20", required = false)
+   public SurvivorResponse getListOfInfectedSurvivorsByPage(
+//           @ApiParam(value = "")
+           @RequestParam(value = "page", defaultValue = "0", required = false)
+   Integer page,
+//           @ApiParam(value = "between 1 to 1000")
+           @RequestParam(value = "size", defaultValue = "20", required = false)
    Integer size, @RequestParam(value = "category", required = false)
    String category, Pageable pageable)
    {
@@ -156,10 +160,14 @@ public class ReportsController
       return resp;
    }
 
-   @ApiOperation(value = "List of non-infected survivors", response = SurvivorResponse.class)
+//   @ApiOperation(value = "List of non-infected survivors", response = SurvivorResponse.class)
    @RequestMapping(value = "/list-of-non-infected-survivors", method = RequestMethod.GET)
-   public SurvivorResponse getListOfNonInfectedSurvivorsByPage(@ApiParam(value = "") @RequestParam(value = "page", defaultValue = "0", required = false)
-   Integer page, @ApiParam(value = "between 1 to 1000") @RequestParam(value = "size", defaultValue = "20", required = false)
+   public SurvivorResponse getListOfNonInfectedSurvivorsByPage(
+//           @ApiParam(value = "")
+           @RequestParam(value = "page", defaultValue = "0", required = false)
+   Integer page,
+//           @ApiParam(value = "between 1 to 1000")
+           @RequestParam(value = "size", defaultValue = "20", required = false)
    Integer size, @RequestParam(value = "category", required = false)
    String category, Pageable pageable)
    {
@@ -189,10 +197,14 @@ public class ReportsController
        return resp;
    }
 
-   @ApiOperation(value = "List of robots", response = SurvivorResponse.class)
+//   @ApiOperation(value = "List of robots", response = SurvivorResponse.class)
    @RequestMapping(value = "/list-of-robots", method = RequestMethod.GET)
-   public SurvivorResponse getListOfRobotsByPage(@ApiParam(value = "") @RequestParam(value = "page", defaultValue = "0", required = false)
-   Integer page, @ApiParam(value = "between 1 to 1000") @RequestParam(value = "size", defaultValue = "20", required = false)
+   public SurvivorResponse getListOfRobotsByPage(
+//           @ApiParam(value = "")
+           @RequestParam(value = "page", defaultValue = "0", required = false)
+   Integer page,
+//           @ApiParam(value = "between 1 to 1000")
+           @RequestParam(value = "size", defaultValue = "20", required = false)
    Integer size, @RequestParam(value = "category", required = false)
    String category, Pageable pageable)
    {

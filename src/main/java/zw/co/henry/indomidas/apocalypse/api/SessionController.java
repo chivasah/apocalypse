@@ -15,9 +15,9 @@ import zw.co.henry.indomidas.apocalypse.model.user.Login;
 import zw.co.henry.indomidas.apocalypse.model.user.User;
 import zw.co.henry.indomidas.apocalypse.repo.UserRepo;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiResponse;
+//import io.swagger.annotations.ApiResponses;
 
 /*
 This is a dummy rest controller, for the purpose of documentation (/session) path is map to a filter
@@ -27,15 +27,15 @@ This is a dummy rest controller, for the purpose of documentation (/session) pat
 */
 
 @RestController
-@Api(tags = { "Authentication" })
+//@Api(tags = { "Authentication" })
 public class SessionController
 {
 
    @Autowired
    private UserRepo userRepo;
 
-   @ApiResponses(value = {
-         @ApiResponse(code = 200, message = "Will return a security token, which must be passed in every request", response = SessionResponse.class) })
+//   @ApiResponses(value = {
+//         @ApiResponse(code = 200, message = "Will return a security token, which must be passed in every request", response = SessionResponse.class) })
    @RequestMapping(value = "/session", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
    @ResponseBody
    public SessionResponse newSession(@RequestBody

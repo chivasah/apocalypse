@@ -5,7 +5,7 @@ import java.util.List;
 import zw.co.henry.indomidas.apocalypse.dto.RobotDTO;
 import zw.co.henry.indomidas.apocalypse.model.response.PageResponse;
 
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,6 +13,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class RobotResponse extends PageResponse
 {
-   @ApiModelProperty(required = true, value = "")
+//   @ApiModelProperty(required = true, value = "")
    private List<RobotDTO> items;
 }

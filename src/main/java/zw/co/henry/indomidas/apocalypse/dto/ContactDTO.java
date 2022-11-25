@@ -16,7 +16,7 @@ public class ContactDTO implements Serializable
 {
    private static final long serialVersionUID = 1L;
 
-   @javax.annotation.Nullable
+//   @javax.annotation.Nullable
    Integer id;
    String email;
    String phone;

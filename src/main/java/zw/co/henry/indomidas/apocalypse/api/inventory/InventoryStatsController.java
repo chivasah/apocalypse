@@ -15,21 +15,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.ApiOperation;
 import zw.co.henry.indomidas.apocalypse.model.data.SingleSeries;
 import zw.co.henry.indomidas.apocalypse.model.response.SingleDataSeriesResponse;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
-@Api(tags = { "Inventory" })
+//@Api(tags = { "Inventory" })
 public class InventoryStatsController
 {
 
    @Autowired
    private JdbcTemplate jdbcTemplate;
 
-   @ApiOperation(value = "Inventory Stats", response = SingleDataSeriesResponse.class)
+//   @ApiOperation(value = "Inventory Stats", response = SingleDataSeriesResponse.class)
    @RequestMapping(value = "/inventory-stats/{type}", method = RequestMethod.GET)
    public SingleDataSeriesResponse getInventoryStats(@PathVariable("type")
    String type)
@@ -42,7 +43,7 @@ public class InventoryStatsController
          fieldName = " count(*) ";
       }
 
-      String sql = "select "+fieldName+" as value, category as name from SurvivorInventory group by category";
+      String sql = "select "+fieldName+" as value, category as name from survivor_inventory group by category";
       String countType = "";
       long count;
       SingleSeries singleSerise;
