@@ -6,17 +6,19 @@
 
 package zw.co.henry.indomidas.apocalypse.model.survivor;
 
-import java.util.Objects;
-
-import javax.persistence.*;
-
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.DynamicUpdate;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+import java.util.Objects;
+import javax.persistence.*;
+
+/**
+ * @author henry
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -40,8 +42,14 @@ public class SurvivorDetail
    @JoinColumn(name = "survivor_id")
    private Survivor survivor;
 
-   @Column(name = "infected")
+   @Column(name = "infected", columnDefinition = "boolean DEFAULT false", nullable = false)
    private Boolean infected;
+
+   @Column(name = "from_date", columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", nullable = false)
+   private Timestamp fromDate;
+
+   @Column(name = "thru_date", columnDefinition = "DATETIME")
+   private Timestamp thruDate;
 
    @Override
    public boolean equals(final Object o$)

@@ -29,8 +29,8 @@ export class ReportsService {
                 const returnObj = jsonResp.items.map(function (v, i, a) {
                     const newRow = Object.assign({}, v, {
                         robotDate: me.translate.getDateString(v.robotDate),
-                        paidDate: me.translate.getDateString(v.paidDate),
-                        shippedDate: me.translate.getDateString(v.shippedDate)
+                        // paidDate: me.translate.getDateString(v.paidDate),
+                        // shippedDate: me.translate.getDateString(v.shippedDate)
                     });
                     return newRow;
                 });

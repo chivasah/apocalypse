@@ -1,18 +1,19 @@
 package zw.co.henry.indomidas.apocalypse.model.response;
 
-import java.util.List;
-
-import zw.co.henry.indomidas.apocalypse.model.data.SingleSeries;
-
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import zw.co.henry.indomidas.apocalypse.model.data.SingleSeries;
+
+import java.util.List;
 
 /**
  * @author henry
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class SingleDataSeriesResponse extends OperationResponse
+final public class SingleDataSeriesResponse extends OperationResponse
 {
+   @ApiModelProperty(required = true, value = "")
    private List<SingleSeries> items;
 }

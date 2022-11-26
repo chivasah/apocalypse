@@ -8,15 +8,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.annotation.Nullable;
+
+/**
+ * @author henry
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SurvivorInventoryDTO implements Serializable
+final public class SurvivorInventoryDTO implements Serializable
 {
    private static final long serialVersionUID = 1L;
 
-//   @javax.annotation.Nullable
+   @Nullable
    private Integer id;
 
    private SurvivorDTO survivor;

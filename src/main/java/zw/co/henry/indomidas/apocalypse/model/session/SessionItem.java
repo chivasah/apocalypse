@@ -1,8 +1,8 @@
 package zw.co.henry.indomidas.apocalypse.model.session;
 
-import java.util.List;
-
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class SessionItem

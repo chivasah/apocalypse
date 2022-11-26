@@ -30,6 +30,6 @@ public final class SurvivorDetailFromSurvivorDetailDTOConverter implements Conve
                 survivor = fromSurvivorDTOConverter.convert(source.getSurvivor());
             }
 
-      return new SurvivorDetail(source.getId(), survivor, source.getInfected());
+      return new SurvivorDetail(source.getId(), survivor, source.getInfected(), null,null);
    }
 }

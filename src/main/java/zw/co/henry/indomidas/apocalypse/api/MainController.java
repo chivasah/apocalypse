@@ -4,13 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
-//import springfox.documentation.annotations.ApiIgnore;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * @author henry
  */
 @Slf4j
-//@ApiIgnore
+@ApiIgnore
 @Controller
 public class MainController
 {
@@ -19,6 +19,12 @@ public class MainController
    public String index()
    {
       return "index.html";
+   }
+
+   @RequestMapping(value = { "/redoc" })
+   public String redoc()
+   {
+      return "/redoc/index.html";
    }
 
 }

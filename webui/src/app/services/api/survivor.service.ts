@@ -11,7 +11,6 @@ export class SurvivorService {
         private translate: TranslateService
     ) {}
 
-
     /**
      * Gets List of survivors
      */
@@ -27,42 +26,14 @@ export class SurvivorService {
                 const returnObj = jsonResp.items.map(function(v, i, a) {
                     const newRow = Object.assign({}, v, {
                         survivorDate  : me.translate.getDateString(v.survivorDate),
-                        paidDate   : me.translate.getDateString(v.paidDate),
-                        shippedDate: me.translate.getDateString(v.shippedDate)
+                        // paidDate   : me.translate.getDateString(v.paidDate),
+                        // shippedDate: me.translate.getDateString(v.shippedDate)
                     });
                     return newRow;
                 });
                 survivorListSubject.next(returnObj);
             });
         return survivorListSubject;
-    }
-
-    getProducts(page?: number, size?: number): Observable<any> {
-
-        const me = this;
-        let params: HttpParams = new HttpParams();
-        params = params.append('page', typeof page === 'number' ? page.toString() : '0');
-        params = params.append('size', typeof size === 'number' ? size.toString() : '1000');
-
-        const productList = new Subject<any>();
-        this.apiRequest.get('api/products', params)
-            .subscribe(jsonResp => {
-                const returnObj = jsonResp.items.map(function(v, i, a) {
-                    const newRow = Object.assign({}, v, {
-                        listPrice   : me.translate.getCurrencyString(v.listPrice),
-                        standardCost: me.translate.getCurrencyString(v.standardCost)
-                    });
-                    return newRow;
-                });
-                productList.next(returnObj);
-            });
-
-        return productList;
-    }
-
-
-    getProductStatsByQuantitySurvivored(): Observable<any> {
-        return this.apiRequest.get('api/product-stats-by-quantity');
     }
 
     /**
@@ -80,9 +51,9 @@ export class SurvivorService {
             .subscribe(jsonResp => {
                 const returnObj = jsonResp.items.map(function(v, i, a) {
                     const newRow = Object.assign({}, v, {
-                        survivorDate  : me.translate.getDateString(v.survivorDate),
-                        paidDate   : me.translate.getDateString(v.paidDate),
-                        shippedDate: me.translate.getDateString(v.shippedDate)
+                        // survivorDate  : me.translate.getDateString(v.survivorDate),
+                        // paidDate   : me.translate.getDateString(v.paidDate),
+                        // shippedDate: me.translate.getDateString(v.shippedDate)
                     });
                     return newRow;
                 });
@@ -104,15 +75,16 @@ export class SurvivorService {
     flagSurvivorAsInfected(survivorId: number): Observable<any> {
         const me = this;
         const survivorDetailSubject = new Subject<any>();
-        this.apiRequest.delete(`api/survivors/${survivorId}`)
+        this.apiRequest.post(`api/survivors/flag-survivor-as-infected`, survivorId)
             .subscribe(jsonResp => survivorDetailSubject.next(jsonResp));
         return survivorDetailSubject;
     }
 
-    updateSurvivorLocation(survivorId: number, newLocation: string): Observable<any> {
+    updateSurvivorLocation(survivor: {id: number, lastLocation: string}): Observable<any> {
+        console.log('updateSurvivorLocation:', survivor);
         const me = this;
         const survivorDetailSubject = new Subject<any>();
-        this.apiRequest.put(`api/survivors/${survivorId}/location`, newLocation)
+        this.apiRequest.patch(`api/survivors/${survivor.id}/location`, survivor)
             .subscribe(jsonResp => {
                 survivorDetailSubject.next(jsonResp);
             });

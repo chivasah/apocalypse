@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.RestController;
 import zw.co.henry.indomidas.apocalypse.model.data.SingleSeries;
 import zw.co.henry.indomidas.apocalypse.model.response.SingleDataSeriesResponse;
 
-//import io.swagger.annotations.Api;
-//import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import zw.co.henry.indomidas.apocalypse.model.robot.Robot;
 import zw.co.henry.indomidas.apocalypse.model.robot.QRobot;
@@ -42,31 +42,27 @@ import zw.co.henry.indomidas.apocalypse.repo.SurvivorRepo;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+/**
+ * @author henry
+ */
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
-//@Api(tags = { "Survivor" })
+@Api(tags = { "Survivors" })
 @Slf4j
-public class SurvivourStatsController
+public class SurvivorStatsController
 {
     private final QSurvivor qSurvivor = QSurvivor.survivor;
-    private final QSurvivorDetail qSurvivorDetail = QSurvivorDetail.survivorDetail;
 
     @PersistenceContext(unitName = "default")
     private EntityManager entityManager;
 
-    @Autowired
-    private SurvivorRepo survivorRepo;
-
-
-
-//   @ApiOperation(value = "Survivor Stats", response = SingleDataSeriesResponse.class)
+   @ApiOperation(value = "Survivor Stats", response = SingleDataSeriesResponse.class)
    @RequestMapping(value = "/survivor-stats/{type}", method = RequestMethod.GET)
    public SingleDataSeriesResponse getSurvivorStats(@PathVariable("type")
    String type)
    {
-       log.info("getSurvivorStats({})", type);
+       log.debug("getSurvivorStats({})", type);
 
-       final QSurvivor qSurvivor0 = new QSurvivor("s0");
        final QSurvivorDetail qSurvivorDetail0 = new QSurvivorDetail("s1");
 
        final JPAQueryFactory jpaQueryFactory = new JPAQueryFactory(JPQLTemplates.DEFAULT, entityManager);
@@ -77,28 +73,28 @@ public class SurvivourStatsController
            .groupBy(qSurvivorDetail0.survivor().id).having(qSurvivorDetail0.survivor().id.count().goe(3))
            .fetch();
 
-       log.info("infectedSurvivors: {}", infectedSurvivors.size());
+       log.debug("infectedSurvivors: {}", infectedSurvivors.size());
        long totalItemCount = jpaQueryFactory.selectFrom(qSurvivor).fetchCount();
-       log.info("totalItemCount: {}", totalItemCount);
+       log.debug("totalItemCount: {}", totalItemCount);
 
       String fieldName = "";
-      if (type.equalsIgnoreCase("status") || type.equalsIgnoreCase("survivor_status")) {
+      if ("status".equalsIgnoreCase(type) || "survivor_status".equalsIgnoreCase(type)) {
          fieldName = " infected ";
       }
       else {
          fieldName = " infected ";
       }
 
-      SingleDataSeriesResponse resp = new SingleDataSeriesResponse();
+      SingleDataSeriesResponse response = new SingleDataSeriesResponse();
       final List<SingleSeries> dataItemList = Arrays.asList(
           new SingleSeries("infected", new BigDecimal(infectedSurvivors.size())),
           new SingleSeries("not infected", new BigDecimal(totalItemCount - infectedSurvivors.size()))
       );
 
-      resp.setItems(dataItemList);
-      resp.setOperationStatus(ResponseStatusEnum.SUCCESS);
-      resp.setOperationMessage("Survivors by " + fieldName);
-      return resp;
+      response.setItems(dataItemList);
+      response.setOperationStatus(ResponseStatusEnum.SUCCESS);
+      response.setOperationMessage("Survivors by " + fieldName);
+      return response;
    }
 
 }

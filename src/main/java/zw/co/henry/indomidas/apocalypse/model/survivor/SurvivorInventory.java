@@ -1,17 +1,16 @@
 package zw.co.henry.indomidas.apocalypse.model.survivor;
 
-import java.util.Objects;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.Hibernate;
 import org.hibernate.annotations.DynamicUpdate;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+/**
+ * @author henry
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

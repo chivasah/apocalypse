@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import zw.co.henry.indomidas.apocalypse.model.user.User;
 
+/**
+ * @author henry
+ */
 public interface UserRepo extends JpaRepository<User, Long>
 {
    Optional<User> findOneByUserId(String userId);

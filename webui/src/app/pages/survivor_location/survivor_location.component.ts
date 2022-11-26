@@ -20,12 +20,12 @@ export class SurvivorLocationComponent implements OnInit {
 
     public fg: FormGroup = this.formBuilder.group({
         id: [0, Validators.required],
-        name: ['' ],
+        name: [''],
         age: [0],
         gender   : [''],
         infected   : [''],
         lastLocation   : ['unknown', [Validators.required, Validators.minLength(5), Validators.pattern(/^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,6}/)]],
-        survivorDetails: ['']
+        // survivorDetails: ['']
     });
 
     isLoading = false;
@@ -53,13 +53,13 @@ export class SurvivorLocationComponent implements OnInit {
             .subscribe(function(resp) {
                 console.log('Survivor details', first(resp));
                 me.fg.setValue({
-                    id: [first(resp).id],
-                    name   : [first(resp).name],
-                    age   : [first(resp).age],
-                    gender   : [first(resp).gender],
-                    infected   : [first(resp).infected],
-                    lastLocation   : [first(resp).lastLocation],
-                    survivorDetails: [first(resp).survivorDetails]
+                    id: first(resp).id,
+                    name   : first(resp).name,
+                    age   : first(resp).age,
+                    gender   : first(resp).gender,
+                    infected   : first(resp).infected,
+                    lastLocation   : first(resp).lastLocation,
+                    // survivorDetails: [first(resp).survivorDetails]
                 });
                 me.survivorDetailsRec = first(resp);
                 me.isLoading = false;
@@ -76,12 +76,13 @@ export class SurvivorLocationComponent implements OnInit {
         console.log(me.fg.getRawValue());
 
         const survivor = me.fg.getRawValue();
-        const newLocation = survivor.lastLocation;
-        me.survivorService.updateSurvivorLocation(me.survivorId, newLocation)
+        console.log(survivor);
+        me.survivorService.updateSurvivorLocation({id: survivor.id, lastLocation: survivor.lastLocation})
             .subscribe((resp: OperationResponse) => {
                 console.log('Survivor details', resp);
                 window.alert(resp.operationMessage);
                 me.isLoading = false;
+                me.fg.markAsPristine();
             }, error => {
                 console.log(error.error.message);
                 me.isLoading = false;

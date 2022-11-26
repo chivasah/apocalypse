@@ -1,5 +1,6 @@
 package zw.co.henry.indomidas.apocalypse.model.response;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -8,7 +9,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class NumericResponse extends OperationResponse
+final public class NumericResponse extends OperationResponse
 {
+   @ApiModelProperty(required = true, value = "")
    private Number result;
 }

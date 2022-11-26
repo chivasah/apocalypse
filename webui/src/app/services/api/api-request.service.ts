@@ -61,6 +61,28 @@ export class ApiRequestService {
             });
     }
 
+    patch(url: string, body: Object): Observable<any> {
+        const me = this;
+        return this.http.patch(this.appConfig.baseApiPath + url, JSON.stringify(body), { headers: this.getHeaders()})
+            .catch(function(error: any) {
+                if (error.status === 401) {
+                    me.router.navigate(['/logout']);
+                }
+                return Observable.throw(error || 'Server error');
+            });
+    }
+
+    options(url: string): Observable<any> {
+        const me = this;
+        return this.http.options(this.appConfig.baseApiPath + url, { headers: this.getHeaders()})
+            .catch(function(error: any) {
+                if (error.status === 401) {
+                    me.router.navigate(['/logout']);
+                }
+                return Observable.throw(error || 'Server error');
+            });
+    }
+
     delete(url: string): Observable<any> {
         const me = this;
         return this.http.delete(this.appConfig.baseApiPath + url, { headers: this.getHeaders()})

@@ -1,20 +1,17 @@
 package zw.co.henry.indomidas.apocalypse.model.survivor;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
-import javax.persistence.*;
-
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
+import java.util.Objects;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -30,15 +27,20 @@ public class Survivor
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Integer id;
    //    private String survivorStatus;
-   @NotEmpty
+
+   @Column(nullable = false, length = 25)
+   @NotNull
    private String name;
 
+   @Column(nullable = false)
+   @NotNull
    private Integer age;
 
-   @NotEmpty
+   @NotNull
+   @Column(columnDefinition = "CHAR(6) DEFAULT 'Male'", length = 6, nullable = false)
    private String gender;
 
-   @Column(name = "last_location")
+   @Column(name = "last_location", columnDefinition = "VARCHAR(25) DEFAULT '-17.829167,31.052222'", length = 25)
    private String lastLocation;
 
    //    @OneToMany(mappedBy = "survivor")

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import zw.co.henry.indomidas.apocalypse.model.response.OperationResponse;
 
+import static java.util.Objects.nonNull;
+
 /**
  * @author henry
  */
@@ -19,9 +21,11 @@ public class GlobalExceptionHandler
    @ExceptionHandler(value = DataIntegrityViolationException.class)
    public OperationResponse handleBaseException(DataIntegrityViolationException e)
    {
-      OperationResponse resp = new OperationResponse();
-      resp.setOperationStatus(ResponseStatusEnum.ERROR);
-      resp.setOperationMessage(e.getRootCause().getMessage());
-      return resp;
+      OperationResponse response = new OperationResponse();
+      response.setOperationStatus(ResponseStatusEnum.ERROR);
+      if(nonNull(e.getRootCause())) {
+         response.setOperationMessage(e.getRootCause().getMessage());
+      }
+      return response;
    }
 }

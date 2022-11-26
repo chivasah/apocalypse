@@ -9,13 +9,8 @@ import { Router } from '@angular/router';
 })
 
 export class RobotsComponent implements OnInit {
-
-    @ViewChild('robotDiscontinuedTpl') robotDiscontinuedTpl: TemplateRef<any>;
-
-
     columns: any[];
     rows: any[];
-
 
     constructor( private router: Router, private robotService: RobotService) {}
     ngOnInit() {
@@ -25,8 +20,7 @@ export class RobotsComponent implements OnInit {
             {prop: 'serialNumber'  , name: 'Serial Number'         , width: 200 },
             {prop: 'model'  , name: 'Model'         , width: 120  },
             {prop: 'manufacturedDate'        , name: 'Manufactured'     , width: 300 },
-            {prop: 'category'     , name: 'Category'     , width: 120 },
-            // {prop: 'discontinued' , name: 'Discontinued' , width: 90, cellTemplate: this.robotDiscontinuedTpl}
+            {prop: 'category'     , name: 'Category'     , width: 120 }
         ];
 
     }

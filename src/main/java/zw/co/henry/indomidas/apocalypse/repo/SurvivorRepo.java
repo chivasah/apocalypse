@@ -7,6 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import zw.co.henry.indomidas.apocalypse.model.survivor.Survivor;
 
+/**
+ * @author henry
+ */
 @Transactional
 public interface SurvivorRepo extends JpaRepository<Survivor, Integer>
 {

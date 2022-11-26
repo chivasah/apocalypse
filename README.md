@@ -39,3 +39,13 @@ java -jar ./target/apocalypse-0.0.2-SNAPSHOT.jar
 Cpmponent         | URL                                      | Credentials
 ---               | ---                                      | ---
 Frontend          |  http://localhost:8181                   | `demo/demo`
+Swagger (API Ref) |  http://localhost:8181/swagger-ui.html   |
+Swagger UI        |  http://localhost:8181/swagger/index.html|
+Redoc (API Ref)   |  http://localhost:8181/redoc/index.html  |
+Swagger Spec      |  http://localhost:8181/api-docs          |
+
+
+**To get an authentication token**
+```bash
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"username": "demo", "password": "demo" }' 'http://localhost:8181/session'
+```

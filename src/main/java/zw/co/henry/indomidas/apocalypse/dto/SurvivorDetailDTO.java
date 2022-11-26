@@ -8,11 +8,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author henry
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SurvivorDetailDTO implements Serializable
+final public class SurvivorDetailDTO implements Serializable
 {
    private static final long serialVersionUID = 1L;
 

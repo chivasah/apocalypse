@@ -1,12 +1,11 @@
 package zw.co.henry.indomidas.apocalypse.model.response;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 //@Data //for getters and setters
 public class PageResponse extends OperationResponse

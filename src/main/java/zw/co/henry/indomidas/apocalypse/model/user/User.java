@@ -1,15 +1,13 @@
 package zw.co.henry.indomidas.apocalypse.model.user;
 
-import javax.persistence.*;
-
-import org.hibernate.annotations.DynamicUpdate;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import zw.co.henry.indomidas.apocalypse.dto.converters.persistence.RoleConverter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import lombok.Getter;
 import lombok.Setter;
+import zw.co.henry.indomidas.apocalypse.dto.converters.persistence.RoleConverter;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user", schema = "john")
@@ -130,7 +128,10 @@ public class User
          String address2, String country, String postal, String secretQuestion, String secretAnswer, boolean enableRenewal, boolean enableBetaTesting) {
       this.setUserId(userId);
       this.setEmail(userId);
-//      this.setPassword(new BCryptPasswordEncoder().encode(password));
+//      final String encoded = new BCryptPasswordEncoder().encode(password);
+//      System.out.println("encoded: "+encoded);
+//      this.setPassword("{bcrypt}"+encoded);
+      this.setPassword("{noop}"+password);
       this.setRole(role);
       this.setFirstName(firstName);
       this.setLastName(lastName);
